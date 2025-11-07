@@ -12,7 +12,7 @@ from aoc import get_input
 from aoc.parsing import nums
 from aoc.complex_grid import Grid, directions
 
-data = get_input(day=1, year=2024)
+data = get_input(day=..., year=...)
 data = data.splitlines()
 
 s = 0
