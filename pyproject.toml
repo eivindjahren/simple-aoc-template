@@ -1,0 +1,29 @@
+[build-system]
+requires = [
+    "setuptools",
+    "setuptools_scm[toml]>=6.2",
+]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "simple-aoc-template"
+authors = [
+  {name = "Eivind Jahren", email = "eja@equinor.com"},
+]
+description = "my aoc template"
+requires-python = ">=3.11"
+readme = "README.md"
+license = {text = "GPL-3.0"}
+classifiers=[
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: Other Environment",
+    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+    "Natural Language :: English",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3.11",
+]
+dynamic = ["version"]
+dependencies=["numpy", "requests"]
+
+[project.urls]
+Repository = "https://github.com/ejahren/simple-aoc-template"

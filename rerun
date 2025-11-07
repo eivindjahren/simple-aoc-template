@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+cooldown_s='0.250'
+cooldown_ns="$( LC_ALL=C printf '%0.9f' "$cooldown_s" | sed -r -e 's|\.||' -e 's|^0+||' )"
+
+"$@"
+end_of_cooldown="$( date +%s%N )"
+
+inotifywait --quiet --recursive --monitor --format '%e %w%f' \
+    --event='modify,close_write,move,create,delete' \
+    --exclude='\.git|\..*\.swp|__pycache__|\.cache|\.pytest_cache|\.hypothesis' \
+    . | while read changed
+do
+
+    now="$( date +%s%N )"
+    if (( now > end_of_cooldown )); then
+        end_of_cooldown="$(( now + cooldown_ns ))"
+        ( sleep "$cooldown_s" && clear && "$@" ) &
+    fi
+done
